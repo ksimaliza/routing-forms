@@ -1,0 +1,26 @@
+<p>formulario-normal works!</p>
+<form (ngSubmit)="save()" #form="ngForm">
+    <label>
+        Name:
+        <input name="name" [(ngModel)]="name" required>
+    </label>
+    <button type="submit" [disabled]="form.invalid">Enviar</button>
+</form>
+
+@if (listNames.length > 0) {
+<table  class="styled-table"  style="margin-top:1rem;">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(name of listNames; track name; let i = $index){
+        <tr><td>{{ i + 1 }}</td>
+            <td>{{ name }}</td>
+        </tr>
+        }
+    </tbody>
+</table>
+}

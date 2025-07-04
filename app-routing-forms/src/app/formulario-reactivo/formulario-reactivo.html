@@ -1,0 +1,33 @@
+<p>formulario-reactivo works!</p>
+<form [formGroup]="miFormulario" (ngSubmit)="enviar()">
+  <label for="correo">Correo electrónico:</label>
+  <input id="correo" type="email" formControlName="correo" />
+
+  <div *ngIf="miFormulario.get('correo')?.touched && miFormulario.get('correo')?.invalid" class="error">
+    <small *ngIf="miFormulario.get('correo')?.errors?.['required']">
+      El correo es obligatorio.
+    </small>
+    <small *ngIf="miFormulario.get('correo')?.errors?.['email']">
+      Ingresa un correo válido.
+    </small>
+  </div>
+
+  <button type="submit" [disabled]="miFormulario.invalid">Enviar</button>
+  @if (listCorreos.length > 0) {
+<table  class="styled-table"  style="margin-top:1rem;">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Correo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(correo of listCorreos; track correo; let i = $index){
+        <tr><td>{{ i + 1 }}</td>
+            <td>{{ correo }}</td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+</form>
